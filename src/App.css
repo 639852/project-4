@@ -1,38 +1,323 @@
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  src: url("fonts/Inter-Regular.woff") format("woff"), url("fonts/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  src: url("fonts/Inter-Semibold.woff") format("woff"), url("fonts/Inter-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+:root {
+  --main-color-text: #252C32;
+  --secondary-color-text: #6E7C87;
+  --main-button-color: #F2994A;
+  --secondary-button-color: #4094F7;
+  --background-color: #F6F8F9;
+  --border-color: #E5E9EB;
+  --placeholder-color: #9AA6AC;
+  --main-radius: 6px;
+  --main-font: 'Inter';
+  --main-font-size: 14px;
+  --main-line-height: calc(24 / 14);
+}
+
+body {
+  font-family: var(--main-font), sans-serif;
+  font-size: var(--main-font-size);
+  line-height: var(--main-line-height);
+  color: var(--main-color-text);
+}
+
+a {
+  color: var(--secondary-color-text);
+  transition: 0.3s;
+}
+
+a:hover {
+  color: inherit;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 4px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--main-radius);
+  line-height: inherit;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+	color: var(--placeholder-color);
+	opacity: 1;
+	transition: .3s;
+}
+
+input:focus::-webkit-input-placeholder {
+	transform: translateY(15px);
+	opacity: 0;
+	transition: .3s .1s;
+}
+
+button {
+  line-height: inherit;
+  border: 0;
+  cursor: pointer;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+}
+
 .App {
-  text-align: center;
+  padding: 0 20px 50px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.button {
+  padding: 4px 12px;
+  font-weight: 600;
+  border-radius: var(--main-radius);
+  color: var(--background-color);
+  transition: 0.3s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.button:hover {
+  opacity: 0.7;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.button_orange {
+  background: var(--main-button-color);
+}
+
+.button_blue {
+  background: var(--secondary-button-color);
+}
+
+.breadcrumbs {
+  padding: 13px 0;
+  font-size: 12px;
+}
+
+.breadcrumbs__link {
+  text-decoration: none;
+}
+
+.breadcrumbs__link::after {
+  padding: 0 8px;
+  content: url(img/arrow.svg);
+  cursor: default;
+}
+
+.issue {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.issue__button {
+  margin-left: 25px;
+  text-decoration: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.search {
+  position: relative;
+  display: flex;
+  padding-top: 30px;
+}
+
+.search::before {
+  position: absolute;
+  bottom: 9px;
+  left: 9px;
+  height: 16px;
+  width: 16px;
+  content: '';
+  background: url(img/search.svg) no-repeat 0 0 / cover;
+}
+
+.search__input {
+  max-width: 256px;
+  padding-left: 30px;
+  margin-right: 8px;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 30px;
+  margin: -10px;
+}
+
+.board__column {
+  flex-basis: calc(25% - 26px);
+  padding: 12px 8px;
+  margin: 5px;
+  border-radius: var(--main-radius);
+  background: var(--background-color);
+}
+
+.board__item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-gap: 12px;
+  padding: 16px;
+  border-radius: var(--main-radius);
+  background: #fff;
+  box-shadow: 0px 0px 1px rgba(26, 32, 36, 0.32), 0px 1px 2px rgba(91, 104, 113, 0.32);
+  transition: 0.3s;
+}
+
+.board__item.task {
+  grid-template-columns: auto auto auto 1fr;
+  justify-items: start;
+  align-items: center;
+}
+
+.task .column-title {
+  margin: 0;
+}
+
+.task .item-title {
+  grid-column: 1 / 5;
+  margin-bottom: 8px;
+}
+
+.task .issue__button {
+  margin-left: 36px;
+}
+
+.item-text {
+  grid-column: 1 / 5;
+  margin: 40px 0 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--secondary-color-text);
+}
+
+.board__item + .board__item {
+  margin-top: 8px;
+}
+
+.column-title {
+  margin: 0 8px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--secondary-color-text);
+
+}
+
+.item-title {
+  grid-column: 1 / 4;
+  margin: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+a.item-title:hover {
+  text-decoration: underline;
+}
+
+.story-points {
+  width: 25px;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 50%;
+  font-weight: 600;
+  background: var(--border-color);
+}
+
+.item-id {
+  color: var(--secondary-color-text);
+}
+
+.new-issue {
+  padding-top: 9px;
+}
+
+.new-issue > *:not(:last-child) {
+  margin-bottom: 22px;
+}
+
+.new-issue__block {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -5px -5px 17px!important;
+}
+
+.new-issue__input,
+.new-issue__text {
+  max-width: 535px;
+  box-sizing: border-box;
+}
+
+.new-issue > .error {
+  margin: -20px 12px 10px;
+  color: #ff3960;
+  font-weight: 600;
+}
+
+.new-issue__select {
+  appearance: none;
+  padding-right: 32px;
+  color: var(--placeholder-color);
+}
+
+.new-issue__arrow {
+  position: relative;
+}
+
+.new-issue__arrow::after {
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  width: 6px;
+  height: 9px;
+  z-index: 3;
+  content: '';
+  transform: rotate(90deg);
+  pointer-events: none;
+  filter: brightness(0.6);
+  background: url(img/arrow.svg) no-repeat 0 0 / cover;
+}
+
+.new-issue__select > option:disabled {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--main-color-text);
+}
+
+.new-issue__block > * {
+  max-width: 125px;
+  width: 100%;
+  margin: 5px;
+}
+
+.new-issue__text {
+  display: block;
+  resize: none;
+  height: 122px;
+}
+
+@media (max-width: 1000px) {
+  .board__column {
+    flex-basis: calc(50% - 26px);
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (max-width: 555px) {
+  .board__column {
+    flex-basis: 100%;
   }
 }
