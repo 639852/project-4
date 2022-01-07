@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Inter";
   font-display: swap;
-  src: url("fonts/Inter-Regular.woff") format("woff"), url("fonts/Inter-Regular.woff2") format("woff2");
+  src: url("/public/fonts/Inter-Regular.woff") format("woff"), url("/public/fonts/Inter-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
@@ -9,7 +9,7 @@
 @font-face {
   font-family: "Inter";
   font-display: swap;
-  src: url("fonts/Inter-Semibold.woff") format("woff"), url("fonts/Inter-Semibold.woff2") format("woff2");
+  src: url("/public/fonts/Inter-Semibold.woff") format("woff"), url("/public/fonts/Inter-Semibold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
 }
@@ -115,7 +115,7 @@ h1 {
 
 .breadcrumbs__link::after {
   padding: 0 8px;
-  content: url(img/arrow.svg);
+  content: url(/public/img/arrow.svg);
   cursor: default;
 }
 
@@ -142,7 +142,7 @@ h1 {
   height: 16px;
   width: 16px;
   content: '';
-  background: url(img/search.svg) no-repeat 0 0 / cover;
+  background: url(/public/img/search.svg) no-repeat 0 0 / cover;
 }
 
 .search__input {
@@ -170,6 +170,7 @@ h1 {
 .board__item {
   display: grid;
   grid-template-columns: auto 1fr auto;
+  align-items: center;
   grid-gap: 12px;
   padding: 16px;
   border-radius: var(--main-radius);
@@ -289,7 +290,7 @@ a.item-title:hover {
   transform: rotate(90deg);
   pointer-events: none;
   filter: brightness(0.6);
-  background: url(img/arrow.svg) no-repeat 0 0 / cover;
+  background: url(/public/img/arrow.svg) no-repeat 0 0 / cover;
 }
 
 .new-issue__select > option:disabled {
